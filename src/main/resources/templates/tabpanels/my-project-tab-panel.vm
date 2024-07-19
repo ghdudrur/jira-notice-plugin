@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <meta name="decorator" content="atl.general"/>
+  </head>
+<meta name="decorator" content="admin"/>
+<meta name="projectKey" content="$project.key"/>
+<meta name="projectId" content="$project.id"/>
+<meta name="admin.active.tab" content="$linkId"/>
+<meta name="admin.active.section" content="atl.jira.proj.config/projectgroup3"/>
+<div class="mod-header">
+    <h3>$i18n.getText('my-project-tab-panel.label')</h3>
+    
+</div>

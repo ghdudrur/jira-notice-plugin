@@ -1,0 +1,10 @@
+<html>
+<head>
+    <meta name="decorator" content="admin"/>
+    <meta name="projectKey" content="$project.key"/>
+    <meta name="projectId" content="$project.id"/>
+    <meta name="admin.active.tab" content="$linkId"/>
+    <meta name="admin.active.section" content="atl.jira.proj.config/projectgroup3"/>
+</head>
+</html>
+

@@ -25,11 +25,11 @@ atlas-mvn -v
 ## Source clone & build
  - 소스를 가져온다 
 ```bash
- git clone https://github.com/catmasterlim/jira-plugin-base.git
+ git clone https://github.com/ghdudrur/jira-notice-plugin.git
 ```
 - 디렉토리로 이동 후 빌드
 ```bash
-cd jira-plugin-base
+cd jira-notice-plugin
 atlas-package
 ```
 
