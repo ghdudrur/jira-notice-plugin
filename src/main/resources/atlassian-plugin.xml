@@ -13,7 +13,8 @@
   <resource type="i18n" name="i18n" location="react-base"/>  
   <!-- add our web resources -->  
   <web-resource key="react-base-resources" name="react-base Web Resources"> 
-    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <dependency>com.atlassian.auiplugin:aui-table-sortable</dependency>
     <resource type="download" name="react-base.css" location="/css/react-base.css"/>  
     <resource type="download" name="react-base.js" location="/js/react-base.js"/>  
     <resource type="download" name="images/" location="/images"/>  
@@ -41,14 +42,25 @@
     <description key="admin-config-servlet.description">The Admin Config Servlet Plugin</description>  
     <url-pattern>/my/adminconfig</url-pattern> 
   </servlet>  
-  <web-item key="release-page" section="jira.project.sidebar.plugins.navigation" weight="300"> 
+  <web-item key="project-notice-page" section="jira.project.sidebar.plugins.navigation" weight="300"> 
     <label key="notice-project-link.label"/>  
-    <link>/projects/$pathEncodedProjectKey?selectedItem=dev.jira.jira-notice-plugin:release-page</link>
-    <param name="iconClass" value="aui-icon-large icon-sidebar-release"/> 
+    <link>/projects/$pathEncodedProjectKey?selectedItem=dev.jira.jira-notice-plugin:project-notice-page</link>
+    <param name="iconClass" value="aui-icon aui-icon-small aui-iconfont-list"/>
   </web-item>  
-  <web-panel key="release-page-key" location="dev.jira.jira-notice-plugin:release-page">
-    <resource name="view" type="velocity" location="/templates/jira-notice/success.vm"/>
+  <web-panel key="project-notice-page-key" location="dev.jira.jira-notice-plugin:project-notice-page">
+    <resource type="velocity" name="view" location="templates/tabpanels/my-project-tab-panel.vm" />
+    <context-provider class="dev.jira.api.ProjectNoticeProvider"/>
+</web-panel>
+<!-- <web-item key="release-page" i18n-name-key="version.release" section="jira.project.sidebar.plugins.navigation" weight="300">
+    <label key="project.page.release.title"/>
+    <link>/projects/$pathEncodedProjectKey?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page</link>
+    <param name="iconClass" value="aui-icon-large icon-sidebar-release"/>
+    <condition class="com.atlassian.jira.projects.page.release.VersionsDefinedAndVisibleCondition"/>
+</web-item>
+ 
+<web-panel key="release-page-key" location="com.atlassian.jira.jira-projects-plugin:release-page">
+    <resource name="view" type="soy" location=":project-subpages-soy/Jira.Projects.Release.Templates.page"/>
     <context-provider class="com.atlassian.jira.projects.page.release.ReleasePageContextProvider"/>
     <condition class="com.atlassian.jira.projects.page.release.VersionsDefinedAndVisibleCondition"/>
-</web-panel>
+</web-panel> -->
 </atlassian-plugin>

@@ -1,10 +1,53 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <meta name="decorator" content="admin"/>
     <meta name="projectKey" content="$project.key"/>
     <meta name="projectId" content="$project.id"/>
     <meta name="admin.active.tab" content="$linkId"/>
     <meta name="admin.active.section" content="atl.jira.proj.config/projectgroup3"/>
+    <title>게시판</title>
 </head>
+<body>
+    <h1>게시판</h1>
+    <table id="custom-parser-example" class="aui aui-table-sortable">
+    <thead>
+    <tr>
+        <th class="aui-table-column-issue-key">Issue key</th>
+        <th class="sorter-priority">Priority</th>
+        <th>Last updated</th>
+        <th>Summary</th>
+    <tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>TEST-12</td>
+        <td>High</td>
+        <td><time datetime="2017-04-20T14:00Z0">April 20, 2017</time></td>
+        <td>Table sorting should be allowed</td>
+    </tr>
+    <tr>
+        <td>WIN-87</td>
+        <td>Blocker</td>
+        <td><time datetime="2018-04-23T11:30Z0">April 23, 2018</time></td>
+        <td>Issue Page doesn't load in IE</td>
+    </tr>
+    <tr>
+        <td>DRINK-7</td>
+        <td>Low</td>
+        <td><time datetime="2018-04-01T17:30Z0">April 1, 2018</time></td>
+        <td>Vending Machine is empty</td>
+    </tr>
+    <tr>
+        <td>TEST-7</td>
+        <td>Medium</td>
+        <td><time datetime="2018-01-11T09:30Z0">January 11, 2018</time></td>
+        <td>My hovercraft is full of eels</td>
+    </tr>
+    </tbody>
+
+</table>
+</body>
 </html>
 
