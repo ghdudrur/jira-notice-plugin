@@ -12,21 +12,19 @@
     <body>
         <h1>Bulletin board</h1>
         <hr />
-        $notice
-        <hr />
         <form action="#" method="post" id=$notice.id class="aui">
             <fieldset>
                 <div class="field-group">
                     <label for="d-fname">Writer<span class="aui-icon icon-required"> required</span></label>
-                    <select     
-                                class="medium-long-field"
-                                id="issue-tab-panel-user-selector"
-                                name="product"
-                                src="products"
-                                value="type to trigger async"
-                    >
-                        <option value="hoyoung">hoyoung</option>
-                    </select>
+                    <input class="text medium-long-field" type="text" id="d-fname" name="d-fname" value=$notice.writer>
+                    <div class="aui-buttons"  style="float:right;">
+                    <button class="aui-button aui-dropdown2-trigger aui-button-split-more" aria-controls="split-container-dropdown">Split more</button>
+                    </div>
+                    <!-- Be sure to put your dropdown markup outside the button group...
+                        otherwise the buttons will get jaggy edges! -->
+                    <aui-dropdown-menu id="split-container-dropdown">
+                        <aui-item-link>Delete</aui-item-link>
+                    </aui-dropdown-menu>
                 </div>
                 <div class="field-group">
                     <label for="d-fname">제목<span class="aui-icon icon-required"> required</span></label>
@@ -39,7 +37,8 @@
                 </div>
                 <div class="field-group">
                     <label for="d-ftextarea">Date</label>
-                    <input class="aui-date-picker" id="demo-range-2" type="date" value=$notice.date/>
+                    <input class="aui-date-picker" id="demo-range-2" type="date" value=$notice.date />
+                    <button id="update-complete-button" class="aui-button aui-button-primary" style="float:right;">완료</button>
                 </div>
             </fieldset>
         </form>
@@ -50,5 +49,5 @@
     
 </script>
 
-$webResourceManager.requireResourcesForContext("jira-notice-plugin-context")
+$webResourceManager.requireResourcesForContext("notice-update")
 

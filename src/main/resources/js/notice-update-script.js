@@ -56,3 +56,15 @@ AJS.toInit(function(){
     });
 });
 
+
+
+
+
+AJS.$("#update-complete-button").on('click', function (e) {
+    console.log("update >>>>>>>>>>>>>>>>>>>>>>");
+    e.preventDefault();
+    
+});
+
+
+

@@ -12,17 +12,18 @@
   <!-- add our i18n resource -->  
   <resource type="i18n" name="i18n" location="react-base"/>  
   <!-- add our web resources -->  
-  <web-resource key="react-base-resources" name="react-base Web Resources"> 
+  <web-resource key="notice-update" name="notice-update"> 
     <dependency>com.atlassian.auiplugin:aui-forms</dependency>  
     <dependency>com.atlassian.auiplugin:ajs</dependency>  
-    <dependency>com.atlassian.auiplugin:aui-table-sortable</dependency>  
-    <resource type="download" name="react-base.css" location="/css/react-base.css"/>  
-    <resource type="download" name="react-base.js" location="/js/react-base.js"/>  
+    <dependency>com.atlassian.auiplugin:aui-table-sortable</dependency> 
+    <dependency>com.atlassian.auiplugin:aui-date-picker</dependency> 
+    <resource type="download" name="notice-board.css" location="/css/notice-board.css"/>  
+    <resource type="download" name="notice-update-script.js" location="js/notice-update-script.js"/>  
     <resource type="download" name="images/" location="/images"/>  
-    <context>react-base</context> 
+    <context>notice-update</context> 
   </web-resource>  
   <web-resource key="test-resources" name="react-base Web Resources"> 
-    <resource type="download" name="react-base.css" location="/css/react-base.css"/>  
+    <resource type="download" name="notice-board.css" location="/css/notice-board.css"/>  
     <resource type="download" name="bulletin-board-script.js" location="js/bulletin-board-script.js"/>  
     <dependency>com.atlassian.auiplugin:ajs</dependency>  
     <dependency>com.atlassian.auiplugin:aui-select2</dependency>  
@@ -91,4 +92,10 @@
       </action> 
     </actions> 
   </webwork1>
+
+  <ao key="ao-module">
+    <description>The module configuring the Active Objects service used by this plugin</description>
+    <entity>dev.jira.ao.Notice</entity>
+  </ao>
+
 </atlassian-plugin>

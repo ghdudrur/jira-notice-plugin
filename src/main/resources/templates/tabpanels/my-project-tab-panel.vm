@@ -11,9 +11,8 @@
 </head>
 <body>
     <h1>Bulletin board</h1>
-    <button id="update-bulletin-button" class="aui-button"style="float:right;">수정 화면 전환</button>
     <hr />
-    <button id="dialog-show-button" class="aui-button"style="float:right;">Add</button>
+    <button id="notice-add-button" class="aui-button"style="float:right;">Add</button>
         <section
             id="demo-dialog"
             class="aui-dialog2 aui-dialog2-large aui-layer"
@@ -25,42 +24,26 @@
             hidden
         >
             <header class="aui-dialog2-header">
-                <h1 class="aui-dialog2-header-main" id="dialog-show-button--heading">Create</h1>
+                <h1 class="aui-dialog2-header-main" id="create-notice-create-name">Create</h1>
             </header>
             <div class="aui-dialog2-content" id="dialog-show-button--description">
                 <form action="#" method="post" id="d1" class="aui">
-                    <fieldset>
+                <fieldset>
                 <div class="field-group">
-                    <label for="d-fname">Writer<span class="aui-icon icon-required"> required</span></label>
-                    <select     
-                                class="medium-long-field"
-                                id="issue-tab-panel-user-selector"
-                                name="product"
-                                src="products"
-                                value="type to trigger async"
-                    >
-                        <option value="hoyoung">hoyoung</option>
-                    </select>
-                </div>
-                <div class="field-group">
-                    <label for="d-fname">제목<span class="aui-icon icon-required"> required</span></label>
-                    <input class="text medium-long-field" type="text" id="d-fname" name="d-fname">
+                    <label for="create-notice-subject">제목<span class="aui-icon icon-required"> required</span></label>
+                    <input class="text medium-long-field" type="text" id="create-notice-subject" name="create-notice-subject">
                     <div class="description">Default width input of a required field</div>
                 </div>
                 <div class="field-group">
-                    <label for="d-ftextarea">내용</label>
-                    <textarea class="textarea medium-long-field" rows="12" cols="12" name="licenseKey" id="licenseKey"></textarea>
-                </div>
-                <div class="field-group">
-                    <label for="d-ftextarea">Date</label>
-                    <input class="aui-date-picker" id="demo-range-2" type="date"/>
+                    <label for="create-notice-subject">내용</label>
+                    <textarea class="textarea medium-long-field" rows="12" cols="12" name="create-notice-context" id="create-notice-context"></textarea>
                 </div>
             </fieldset>
                 </form>
             </div>
             <footer class="aui-dialog2-footer">
                 <div class="aui-dialog2-footer-actions">
-                    <button id="dialog-submit-button" class="aui-button aui-button-primary">Create</button>
+                    <button id="create-notice-button" class="aui-button aui-button-primary">Create</button>
                     <button id="form-dialog-close-button" class="aui-button aui-button-link">Close</button>
                 </div>
             </footer>
@@ -76,13 +59,23 @@
     <tr>
     </thead>
     <tbody>
-    #foreach ($notice in $noticeLists.getEntity())
+    #foreach ($notice in $noticeLists)
     <tr class="notice-tr-class" value=$notice.id>
         <td class="noticeNo">$notice.id</td>
-        <td class="notice-writer">$notice.writer</td>
+        <td class="notice-writer">$notice.writer</td> 
         <td class="notice-title">$notice.title</td>
         <td class="notice-date">$notice.date</td>
-        <td class="notice-buttons"><button id="tr-change-button" class="aui-button">...</button></td>
+        <td class="notice-buttons">
+            <div class="aui-buttons">
+            <button class="aui-button aui-dropdown2-trigger aui-button-split-more" aria-controls="split-container-dropdown">Split more</button>
+            </div>
+            <!-- Be sure to put your dropdown markup outside the button group...
+                otherwise the buttons will get jaggy edges! -->
+            <aui-dropdown-menu id="split-container-dropdown">
+                <aui-item-link>Edit</aui-item-link>
+                <aui-item-link>Delete</aui-item-link>
+            </aui-dropdown-menu>
+        </td>
     </tr>
     #end
     </tbody>

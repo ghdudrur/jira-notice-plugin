@@ -11,12 +11,6 @@ public class NoticeListModel {
 
     public NoticeListModel() {
         this.list = new ArrayList();
-        NoticeDetailModel notice = new NoticeDetailModel(123);
-        NoticeDetailModel notice2 = new NoticeDetailModel(1);
-        NoticeDetailModel notice3 = new NoticeDetailModel(3);
         
-        this.list.add(notice);
-        this.list.add(notice2);
-        this.list.add(notice3);
     }
 }

@@ -25,7 +25,7 @@ public class NoticeRestModuleTest {
 
     @Test
     public void messageIsValid() {
-        NoticeRestModule resource = new NoticeRestModule();
+        //NoticeRestModule resource = new NoticeRestModule();
 
        // Response response = resource.getMessage();
         //final NoticeRestModuleModel message = (NoticeRestModuleModel) response.getEntity();

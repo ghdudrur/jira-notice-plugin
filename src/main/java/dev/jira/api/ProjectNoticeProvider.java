@@ -7,13 +7,19 @@ import javax.ws.rs.core.Response;
 
 import org.apache.log4j.Logger;
 
+import com.atlassian.activeobjects.external.ActiveObjects;
 import com.atlassian.jira.project.Project;
 import com.atlassian.jira.security.JiraAuthenticationContext;
 import com.atlassian.plugin.PluginParseException;
 import com.atlassian.plugin.servlet.PluginHttpRequestWrapper;
+import com.atlassian.plugin.spring.scanner.annotation.imports.ComponentImport;
 import com.atlassian.plugin.spring.scanner.annotation.imports.JiraImport;
 import com.atlassian.plugin.web.ContextProvider;
+import com.atlassian.sal.api.transaction.TransactionCallback;
+import com.microsoft.graph.models.Todo;
 
+import dev.jira.ao.Notice;
+import dev.jira.rest.NoticeDetailModel;
 import dev.jira.rest.NoticeListModel;
 
 public class ProjectNoticeProvider 
@@ -21,13 +27,17 @@ public class ProjectNoticeProvider
 {
 
    private static final Logger LOGGER = Logger.getLogger(ProjectNoticeProvider.class);
-  
+   
+   @JiraImport
+    private final ActiveObjects ao;
+
   @JiraImport
   private final JiraAuthenticationContext jiraAuthenticationContext;
 
   
-  public ProjectNoticeProvider(JiraAuthenticationContext jiraAuthenticationContext) {
+  public ProjectNoticeProvider(JiraAuthenticationContext jiraAuthenticationContext, ActiveObjects ao) {
      this.jiraAuthenticationContext = jiraAuthenticationContext;
+     this.ao = ao;
   }
 
 
@@ -52,7 +62,7 @@ public class ProjectNoticeProvider
        PluginHttpRequestWrapper request = (PluginHttpRequestWrapper)map.get("request");
        if (request != null) {
          map.put("contextPath", request.getContextPath());
-         map.put("noticeLists", Response.ok(getList()).build());
+         map.put("noticeLists", getList());
       }
       
        map.put("projectKey", projectKey);
@@ -66,6 +76,19 @@ public class ProjectNoticeProvider
   }
 
   public List getList(){
-      return new NoticeListModel().list;
+   NoticeListModel noticeListModel = new NoticeListModel();
+   ao.executeInTransaction( new TransactionCallback<Void>() // (1)
+    {
+        @Override
+        public Void doInTransaction()
+        {
+            for (Notice notice : ao.find(Notice.class)) // (2)
+            {
+               noticeListModel.list.add(new NoticeDetailModel(notice));
+            }
+            return null;
+        }
+    });
+      return noticeListModel.list;
   }
 }
