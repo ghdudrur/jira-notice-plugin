@@ -10,7 +10,7 @@ import static org.mockito.Mockito.*;
 /**
  * @since 3.5
  */
-public class JiraNoticeActionTest {
+public class NoticeWorkActionTest {
 
     @Before
     public void setup() {
@@ -25,9 +25,9 @@ public class JiraNoticeActionTest {
     @Test(expected=Exception.class)
     public void testSomething() throws Exception {
 
-        //JiraNoticeAction testClass = new JiraNoticeAction();
+        //NoticeWorkAction testClass = new NoticeWorkAction();
 
-        throw new Exception("JiraNoticeAction has no tests!");
+        throw new Exception("NoticeWorkAction has no tests!");
 
     }
 

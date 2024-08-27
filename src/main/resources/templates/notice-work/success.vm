@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="decorator" content="admin"/>
+    <meta name="projectKey" content="$project.key"/>
+    <meta name="projectId" content="$project.id"/>
+    <meta name="admin.active.tab" content="$linkId"/>
+    <meta name="admin.active.section" content="atl.jira.proj.config/projectgroup3"/>
+    <title>Bulletin board</title>
+</head>
+    <body>
+        <h1>Bulletin board</h1>
+        <hr />
+        <form action="#" method="post" id="d1" class="aui">
+            <fieldset>
+                <div class="field-group">
+                    <label for="d-fname">Writer<span class="aui-icon icon-required"> required</span></label>
+                    <select     
+                                class="medium-long-field"
+                                id="issue-tab-panel-user-selector"
+                                name="product"
+                                src="products"
+                                value="type to trigger async"
+                    >
+                        <option value="hoyoung">hoyoung</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="d-fname">제목<span class="aui-icon icon-required"> required</span></label>
+                    <input class="text medium-long-field" type="text" id="d-fname" name="d-fname">
+                    <div class="description">Default width input of a required field</div>
+                </div>
+                <div class="field-group">
+                    <label for="d-ftextarea">내용</label>
+                    <textarea class="textarea medium-long-field" rows="12" cols="12" name="licenseKey" id="licenseKey"></textarea>
+                </div>
+                <div class="field-group">
+                    <label for="d-ftextarea">Date</label>
+                    <input class="aui-date-picker" id="demo-range-2" type="date"/>
+                </div>
+            </fieldset>
+        </form>
+    </body>
+</html>
+
+<script type="text/javascript">
+    
+</script>
+
+$webResourceManager.requireResourcesForContext("jira-notice-plugin-context")
+

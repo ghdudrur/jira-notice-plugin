@@ -7,14 +7,13 @@ import com.atlassian.jira.security.request.SupportedMethods;
 import com.atlassian.jira.security.request.RequestMethod;
 
 @SupportedMethods({RequestMethod.GET})
-public class JiraNoticeAction extends JiraWebActionSupport
+public class NoticeWorkAction extends JiraWebActionSupport
 {
-    private static final Logger log = LoggerFactory.getLogger(JiraNoticeAction.class);
+    private static final Logger log = LoggerFactory.getLogger(NoticeWorkAction.class);
 
     @Override
     public String execute() throws Exception {
 
         return super.execute(); //returns SUCCESS
-        
     }
 }
