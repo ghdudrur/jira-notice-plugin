@@ -10,38 +10,50 @@
     <title>Bulletin board</title>
 </head>
     <body>
-        <h1>Bulletin board</h1>
-        <hr />
-        <form action="#" method="post" id=$notice.id class="aui">
-            <fieldset>
-                <div class="field-group">
-                    <label for="d-fname">Writer<span class="aui-icon icon-required"> required</span></label>
-                    <input class="text medium-long-field" type="text" id="d-fname" name="d-fname" value=$notice.writer>
-                    <div class="aui-buttons"  style="float:right;">
+        <div id="notice-all">
+            <div id="notice-header">
+                <h1>Bulletin board</h1>
+                <hr />
+            </div>
+            <div id="notice-body">
+                <form action="#" method="post" id="notice-board-update-form" data-noticeid=$notice.id class="aui">
+                    <fieldset>
+                        <div class="field-group">
+                            <label for="notice-writer-field">Writer<span class="aui-icon icon-required"> required</span></label>
+                            <input class="text medium-long-field" type="text" id="notice-writer-field" name="notice-writer-field" value=$notice.writer>
+                        </div>
+                        <div class="field-group">
+                            <label for="update-notice-subject">제목<span class="aui-icon icon-required"> required</span></label>
+                            <input class="text medium-long-field" type="text" id="update-notice-subject" name="update-notice-subject" value=$notice.title>
+                            <div class="description"></div>
+                        </div>
+                        <div class="field-group">
+                            <label for="update-notice-context">내용</label>
+                            <textarea class="textarea medium-long-field" rows="12" cols="12" name="update-notice-context" id="update-notice-context">$notice.context</textarea>
+                        </div>
+                        <div class="field-group">
+                            <label for="notice-date-field">Date</label>
+                            <input class="text medium-long-field" type="text" id="notice-date-field" name="notice-date-field" value="$notice.date">
+                        </div>
+                    </fieldset>
+                </form>
+                <div id="notice-right-sidebar">
+                    <div class="aui-buttons" id="notice-aui-button">
                     <button class="aui-button aui-dropdown2-trigger aui-button-split-more" aria-controls="split-container-dropdown">Split more</button>
                     </div>
-                    <!-- Be sure to put your dropdown markup outside the button group...
-                        otherwise the buttons will get jaggy edges! -->
                     <aui-dropdown-menu id="split-container-dropdown">
-                        <aui-item-link>Delete</aui-item-link>
+                        <aui-item-link class="notice-delete-button2">Delete</aui-item-link>
                     </aui-dropdown-menu>
+                    <div id="notice-complete">
+                        <a id="update-notice-complete-button" class="aui-button aui-button-primary" style="float:right;">완료</a>
+                    </div>
                 </div>
-                <div class="field-group">
-                    <label for="d-fname">제목<span class="aui-icon icon-required"> required</span></label>
-                    <input class="text medium-long-field" type="text" id="d-fname" name="d-fname" value=$notice.title>
-                    <div class="description"></div>
-                </div>
-                <div class="field-group">
-                    <label for="d-ftextarea">내용</label>
-                    <textarea class="textarea medium-long-field" rows="12" cols="12" name="licenseKey" id="licenseKey">$notice.context</textarea>
-                </div>
-                <div class="field-group">
-                    <label for="d-ftextarea">Date</label>
-                    <input class="aui-date-picker" id="demo-range-2" type="date" value=$notice.date />
-                    <button id="update-complete-button" class="aui-button aui-button-primary" style="float:right;">완료</button>
-                </div>
-            </fieldset>
-        </form>
+            </div>
+            
+        <div>   
+            hello!
+        </div>
+    </div>
     </body>
 </html>
 

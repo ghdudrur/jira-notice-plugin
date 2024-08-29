@@ -1,70 +1,48 @@
 
 console.log("start >>>>>>>>>>>>>>>>>>>>");
 AJS.toInit(function(){
-    AJS.$("#custom-parser-example").removeClass("aui-table-sortable");
-    AJS.$("#custom-parser-example").addClass("aui-table-sortable");
-    AJS.tablessortable.setTableSortable(AJS.$("#custom-parser-example"));
-    AJS.$("#custom-parser-example").show();
+    
     console.log("middle 1 >>>>>>>>>>>>>>>>>>>>");
 
-    AJS.$("#notice-add-button").on('click', function(e) {
-        console.log("notice-add-button>>>>>>>>>>>>>>>>>>>>");
-        e.preventDefault();
-        AJS.dialog2("#demo-dialog").show();
+    AJS.$(document).ready(function() {
+        AJS.$('#date-picker-for-notice').datePicker({'overrideBrowserDefault': true});
     });
 
-    AJS.$("#create-notice-button").on('click', function(e) {
-        console.log("create-notice-button>>>>>>>>>>>>>>>>>>>>");
+    AJS.$("#update-notice-complete-button").on('click', function (e) {
+        console.log("update >>>>>>>>>>>>>>>>>>>>>>");
         e.preventDefault();
-        let data = {"subject" : AJS.$("#create-notice-subject").val()
-                    , "context" : AJS.$("#create-notice-context").val()
+        let data = {"subject" : AJS.$("#update-notice-subject").val()
+                    , "context" : AJS.$("#update-notice-context").val()
                     }
         AJS.$.ajax({
-            url: AJS.contextPath() + "/rest/notice/1.0/create",
+            url: AJS.contextPath() + "/rest/notice/1.0/update?id=" + AJS.$('#notice-board-update-form').data('noticeid'),
             contentType : 'application/json; charset=utf-8',
             type: "POST",
-            data: JSON.stringify(data),
-            success: function(msg){
-              alert(msg);
+            data: JSON.stringify(data),     
+            success: function(){
+                onbeforeunload = function(){}
+                location.replace(AJS.contextPath()+"/projects/TEST?selectedItem=dev.jira.jira-notice-plugin:project-notice-page");
             }
-          });
+        });
     });
-    
-    AJS.$("#update-bulletin-button").on('click', function(e) {
-        e.preventDefault();
-        AJS.location("http://localhost:2990/jira/projects/TEST?selectedItem=dev.jira.jira-notice-plugin:project-notice-update-page");
-    });
-    AJS.$(document).ready(function() {
-        AJS.$('#demo-range-2').datePicker({'overrideBrowserDefault': true});
-    });
-    // Hides the dialog
-    AJS.$("#dialog-submit-button").on('click', function (e) {
-        e.preventDefault();
-        AJS.dialog2("#demo-dialog").hide();
-    });
-    
-    AJS.$("#form-dialog-close-button").on('click', function (e) {
-        console.log("close >>>>>>>>>>>>>>>>>>>>");
-        e.preventDefault();
-        AJS.dialog2("#demo-dialog").hide();
-    });
-    AJS.$("#issue-tab-panel-user-selector").val('').auiSelect2();
 
-    AJS.$(".notice-title").on('click', function (e) {
-        console.log(">>>>>>>>>>>>>>>", e.target.parentElement.getAttribute("value"));
-        document.location.href=AJS.contextPath()+"/projects/TEST?selectedItem=dev.jira.jira-notice-plugin:project-notice-update-page&id="+e.target.parentElement.getAttribute("value");
+    AJS.$(".notice-delete-button2").on('click', function (e) {
+        console.log(">>>>>>>>>>>>>>> delete >>>>" + AJS.$("#notice-board-update-form").data('noticeid'));
+        e.preventDefault();
+        AJS.$.ajax({
+            url: AJS.contextPath() + "/rest/notice/1.0/delete?id=" +  AJS.$("#notice-board-update-form").data('noticeid'),
+            contentType : 'application/json; charset=utf-8',
+            type: "DELETE",     
+            success: function(){
+               //document.location.reload(true);
+               location.replace(AJS.contextPath()+"/projects/TEST?selectedItem=dev.jira.jira-notice-plugin:project-notice-page");
+            }
+        });
     });
 });
 
 
 
-
-
-AJS.$("#update-complete-button").on('click', function (e) {
-    console.log("update >>>>>>>>>>>>>>>>>>>>>>");
-    e.preventDefault();
-    
-});
 
 
 

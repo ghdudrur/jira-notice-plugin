@@ -25,22 +25,13 @@ public class NoticeDetailModel {
         
     }
 
-    public NoticeDetailModel(int id) {
-        this.id = id;
-        this.title = "제목";
-        this.context = "내용";
-        this.writer = "ryu";
-        Date nowDate = new Date();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        this.date = simpleDateFormat.format(nowDate);
-    }
 
     public NoticeDetailModel(Notice notice){
         this.id = notice.getID();
         this.title = notice.getSubject();
         this.context = notice.getContext();
         this.writer = notice.getCreator();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd a HH:mm:ss");
         this.date = simpleDateFormat.format(notice.getCreateDate());
     }
 

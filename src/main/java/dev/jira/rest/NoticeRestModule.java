@@ -87,32 +87,39 @@ public class NoticeRestModule {
     }
     
     @Path("/update")
-    @GET
+    @POST
     @AnonymousAllowed
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Response update(@RequestBody Map<String, String> data)
+    public Response update(@RequestBody Map<String, String> data, @QueryParam("id") int id)
     {
+      
+      int noticeId = id;
+
       if(jiraAuthenticationContext.getLoggedInUser() == null ){
          return Response.status(Status.UNAUTHORIZED).build();
       }
       String subject = data.get("subject");
       String context = data.get("context");
-      ao.executeInTransaction(new TransactionCallback<Notice>() // (1)
+      Notice notice = ao.executeInTransaction(new TransactionCallback<Notice>() // (1)
     {
         @Override
         public Notice doInTransaction()
         {
-            final Notice notice = ao.create(Notice.class); // (2)
-            notice.setSubject(subject); // (3)
-            notice.setContext(context);
-            notice.setCreator(jiraAuthenticationContext.getLoggedInUser().getUsername());
-            notice.setCreateDate(new Date());
-            notice.save(); // (4)
-            return notice;
+            final Notice[] notice = ao.find(Notice.class, "ID = ?",noticeId);
+            if (notice.length != 1){return null;} // (2)
+            notice[0].setSubject(subject); // (3)
+            notice[0].setContext(context);
+            notice[0].setCreator(jiraAuthenticationContext.getLoggedInUser().getUsername());
+            notice[0].setUpdateDate(new Date());
+            notice[0].save(); // (4)
+            return notice[0];
         }
     });
-       return Response.ok(new NoticeRestModuleModel("Hello World")).build();
+      NoticeDetailModel noticeDetailModel = new NoticeDetailModel(notice);
+      
+      return Response.ok(noticeDetailModel).build();
     }
+
     @Path("/getdetail")
     @GET
     @AnonymousAllowed
@@ -137,5 +144,24 @@ public class NoticeRestModule {
     NoticeDetailModel noticeDetailModel = new NoticeDetailModel(notice);
     
        return Response.ok(noticeDetailModel).build();
+    }
+
+    @Path("/delete")
+    @DELETE
+    @AnonymousAllowed
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response delete(@QueryParam("id") int id)
+    {
+      
+      int noticeId = id;
+
+      if(jiraAuthenticationContext.getLoggedInUser() == null ){
+         return Response.status(Status.UNAUTHORIZED).build();
+      }
+      
+      int deleteCount = ao.deleteWithSQL(Notice.class, "ID = ?",noticeId);
+    
+      
+      return Response.ok(new NoticeRestDeleteModel("Delete", noticeId)).build();
     }
 }

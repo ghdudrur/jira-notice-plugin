@@ -14,7 +14,7 @@
     <hr />
     <button id="notice-add-button" class="aui-button"style="float:right;">Add</button>
         <section
-            id="demo-dialog"
+            id="dialog-create-notice"
             class="aui-dialog2 aui-dialog2-large aui-layer"
             role="dialog"
             tabindex="-1"
@@ -67,13 +67,13 @@
         <td class="notice-date">$notice.date</td>
         <td class="notice-buttons">
             <div class="aui-buttons">
-            <button class="aui-button aui-dropdown2-trigger aui-button-split-more" aria-controls="split-container-dropdown">Split more</button>
+            <button class="aui-button aui-dropdown2-trigger aui-button-split-more" aria-controls="split-container-dropdown-$notice.id">Split more</button>
             </div>
             <!-- Be sure to put your dropdown markup outside the button group...
                 otherwise the buttons will get jaggy edges! -->
-            <aui-dropdown-menu id="split-container-dropdown">
-                <aui-item-link>Edit</aui-item-link>
-                <aui-item-link>Delete</aui-item-link>
+            <aui-dropdown-menu id="split-container-dropdown-$notice.id">
+                <aui-item-link class="notice-edit-button">Edit</aui-item-link>
+                <aui-item-link class="notice-delete-button">Delete</aui-item-link>
             </aui-dropdown-menu>
         </td>
     </tr>

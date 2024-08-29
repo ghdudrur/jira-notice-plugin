@@ -1,4 +1,38 @@
 .notice-title:hover{
     cursor:pointer;
-    color: rgb(0, 102, 255);
+    color: rgb(17, 115, 226);
  }
+
+#notice-all{
+    display: flex;
+    flex-direction: column;
+ }
+
+#notice-body{
+    display: flex;
+    flex-direction: row;
+ }
+
+#notice-board-update-form{
+    flex-grow: 3;
+ }
+#notice-right-sidebar{
+    display: flex;
+    align-content: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+
+ }
+
+ #notice-aui-button{
+    display: flex;
+    flex-direction: row-reverse;
+ }
+
+ #notice-complete{
+    
+    display: flex;
+    flex-direction: row-reverse;
+
+ }
+ 
